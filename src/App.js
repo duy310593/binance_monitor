@@ -21,7 +21,7 @@ function App() {
 
         setInterval(() => {
             setTimestamp(Date.now());
-        }, 1000*60*5);
+        }, 1000*50*6);
     }, []);
 
     useEffect(() => {
@@ -40,7 +40,13 @@ function App() {
 
         setResultData(data);
 
-        new Notification(notificationMessage);
+        if (window.Notification && Notification.permission === 'granted') {
+            try {
+                new Notification(notificationMessage);
+            } catch (error) {
+                console.log(error);
+            }
+        };
     }, [currentPriceChange]);
 
     useEffect(() => {
