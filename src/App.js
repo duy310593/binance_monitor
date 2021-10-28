@@ -84,7 +84,9 @@ function App() {
                 }}>
                     {resultData.map((i, iIndex) => <Fragment key={iIndex}>
                         <div className="col-6 text-start">{i.symbol}</div>
-                        <div className="col-6 text-end">{i.value}</div>
+                        <div className="col-6 text-end" style={{
+                            textShadow: i.value > 5 ? (i.value > 10 ? (i.value > 15 ? '0 0 4px #ff0080, 0 0 11px #ff0080, 0 0 19px #ff0080' : '0 0 4px #e300ff, 0 0 11px #e300ff, 0 0 19px #e300ff') : '0 0 4px #00edff, 0 0 11px #00edff, 0 0 19px #00edff') : 'none'
+                        }}>{i.value}</div>
                     </Fragment>)}
                 </div>, [timestamp, resultData])}
             </header>
