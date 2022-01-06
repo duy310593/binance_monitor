@@ -1,0 +1,63 @@
+<html>
+    <head> <meta name="viewport" content="width=device-width, initial-scale=1.0"> </head>
+    <body>
+        <h1>Binance Monitor</h1>
+        <table id="results">
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            new Promise(resolve => {
+                axios.get('https://www.binance.com/bapi/margin/v1/public/isolated-margin/pair/all').then((response) => {
+                    var results = [];
+                    var symbols = response.data.data.filter(i => i.quote === 'USDT');
+                    symbols.forEach((i, index) => {
+                        axios.get(`https://www.binance.com/api/v3/klines?symbol=${i.symbol}&interval=1M`).then((response) => {
+                            var data = response.data.slice(-1)[0];
+                            var value = ((parseFloat(data[4]) - parseFloat(data[1])) / parseFloat(data[1]) * 100).toFixed(3);
+                            results.push({
+                                symbol: i.symbol,
+                                value: value
+                            });
+                            if (index + 1 === symbols.length) {
+                                resolve(results);
+                            }
+                        });
+                    })
+                });
+            }).then(results => {
+                results.filter(i => i.value > 0).sort((a, b) => parseFloat(b.value) - parseFloat(a.value)).slice(0, 10).forEach((i) => {
+                    var symbolText = document.createTextNode(i.symbol);
+                    var tdSymbol = document.createElement('td');
+                    tdSymbol.appendChild(symbolText);
+                    var valueText = document.createTextNode(i.value);
+                    var tdValue = document.createElement('td');
+                    tdValue.appendChild(valueText);
+                    var tr = document.createElement('tr');
+                    tr.appendChild(tdSymbol);
+                    tr.appendChild(tdValue);
+                    document.getElementById('results').appendChild(tr);
+                });
+
+                var tr = document.createElement('tr').appendChild(document.createElement('td')).appendChild(document.createElement('td'));
+                document.getElementById('results').appendChild(tr);
+
+                results.filter(i => i.value < 0).sort((a, b) => parseFloat(a.value) - parseFloat(b.value)).slice(0, 10).forEach((i) => {
+                    var symbolText = document.createTextNode(i.symbol);
+                    var tdSymbol = document.createElement('td');
+                    tdSymbol.appendChild(symbolText);
+                    var valueText = document.createTextNode(i.value);
+                    var tdValue = document.createElement('td');
+                    tdValue.appendChild(valueText);
+                    var tr = document.createElement('tr');
+                    tr.appendChild(tdSymbol);
+                    tr.appendChild(tdValue);
+                    document.getElementById('results').appendChild(tr);
+                });
+            });
+        </script>
+    </body>
+</html>

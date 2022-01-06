@@ -91,7 +91,7 @@ function App() {
         var highPriceData = priceData.filter(i => i.value2 >= 6);
 
         if (lowPriceData.length) {
-            normalPriceData.forEach(i => {
+            lowPriceData.forEach(i => {
                 var data = new FormData();
 
                 data.append('title', 'BINANCE MONITOR [LOW]');
