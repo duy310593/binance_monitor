@@ -36,7 +36,7 @@ function App() {
             }).catch((error) => {
                 console.log(error.message);
             })
-        }, 1000*60*1);
+        }, 1000*60*30);
     }, []);
 
     useEffect(() => {
@@ -170,7 +170,7 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <img src="https://gcdn.pbrd.co/images/MXho7UMaA6te.png" className="App-logo" alt="logo" style={{
+                <img src="https://gcdnb.pbrd.co/images/hscSnj1l5Dwn.png" className="App-logo" alt="logo" style={{
                     filter: 'hue-rotate(15deg)'
                 }}/>
                 <h3>Binance Monitor</h3>
