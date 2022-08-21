@@ -26,18 +26,17 @@ function App() {
         }, 1000*60*5);
 
         setInterval(() => {
-            var data = new FormData();
-
-            data.append('title', 'GOTIFY SYSTEM');
-            data.append('message', 'IS RUNNING');
-            data.append('priority', 0);
-
-            axios.post('http://18.116.234.155:5000/message?token=AJemvXYpZeL2iVR', data).then(() => {
+            var postdata = new URLSearchParams({
+                'ApiKey': '7G8TOJDHDIF55BSK24VPSM9T9',
+                'PushTitle': '[IS RUNNING]',
+                'PushText': '...',
+            });
+            axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
                 console.log('GOTIFY SYSTEM is running.');
             }).catch((error) => {
                 console.log(error.message);
-            });
-        }, 1000*60*30);
+            })
+        }, 1000*60*1);
     }, []);
 
     useEffect(() => {
@@ -92,49 +91,46 @@ function App() {
 
         if (lowPriceData.length) {
             lowPriceData.forEach(i => {
-                var data = new FormData();
-
-                data.append('title', 'BINANCE MONITOR [LOW]');
-                data.append('message', i.symbol + ': ' + i.value1 + ' | ' + i.value2);
-                data.append('priority', 1);
-
-                axios.post('http://18.116.234.155:5000/message?token=ApgHgxPk9xvo9.6', data).then(() => {
+                var postdata = new URLSearchParams({
+                    'ApiKey': 'KA4MMBRZMEOWSOVC3NKEISONA',
+                    'PushTitle': '[LOW]',
+                    'PushText': i.symbol + ': ' + i.value1 + ' | ' + i.value2,
+                });
+                axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
                     console.log(i.symbol + ': ' + i.value1 + ' | ' + i.value2);
                 }).catch((error) => {
                     console.log(error.message);
-                });
+                })
             });
         }
 
         if (normalPriceData.length) {
             normalPriceData.forEach(i => {
-                var data = new FormData();
-
-                data.append('title', 'BINANCE MONITOR [NORMAL]');
-                data.append('message', i.symbol + ': ' + i.value1 + ' | ' + i.value2);
-                data.append('priority', 4);
-
-                axios.post('http://18.116.234.155:5000/message?token=ApgHgxPk9xvo9.6', data).then(() => {
+                var postdata = new URLSearchParams({
+                    'ApiKey': 'KA4MMBRZMEOWSOVC3NKEISONA',
+                    'PushTitle': '[NORMAL]',
+                    'PushText': i.symbol + ': ' + i.value1 + ' | ' + i.value2,
+                });
+                axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
                     console.log(i.symbol + ': ' + i.value1 + ' | ' + i.value2);
                 }).catch((error) => {
                     console.log(error.message);
-                });
+                })
             });
         }
 
         if (highPriceData.length) {
             highPriceData.forEach(i => {
-                var data = new FormData();
-
-                data.append('title', 'BINANCE MONITOR [HIGH]');
-                data.append('message', i.symbol + ': ' + i.value1 + ' | ' + i.value2);
-                data.append('priority', 8);
-
-                axios.post('http://18.116.234.155:5000/message?token=ApgHgxPk9xvo9.6', data).then(() => {
+                var postdata = new URLSearchParams({
+                    'ApiKey': 'KA4MMBRZMEOWSOVC3NKEISONA',
+                    'PushTitle': '[HIGH]',
+                    'PushText': i.symbol + ': ' + i.value1 + ' | ' + i.value2,
+                });
+                axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
                     console.log(i.symbol + ': ' + i.value1 + ' | ' + i.value2);
                 }).catch((error) => {
                     console.log(error.message);
-                });
+                })
             });
         }
 
