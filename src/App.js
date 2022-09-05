@@ -26,12 +26,28 @@ function App() {
         }, 1000*60*5);
 
         setInterval(() => {
-            var postdata = new URLSearchParams({
-                'ApiKey': '7G8TOJDHDIF55BSK24VPSM9T9',
-                'PushTitle': '[IS RUNNING]',
-                'PushText': '...',
-            });
-            axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
+            // var postdata = new URLSearchParams({
+            //     'ApiKey': '7G8TOJDHDIF55BSK24VPSM9T9',
+            //     'PushTitle': '[IS RUNNING]',
+            //     'PushText': '...',
+            // });
+            // axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
+            //     console.log('GOTIFY SYSTEM is running.');
+            // }).catch((error) => {
+            //     console.log(error.message);
+            // })
+
+            axios.post('https://api.catapush.com/1/messages', {
+                mobileAppId: 318,
+                text: '[IS RUNNING]',
+                recipients: [{identifier: '84822363863'}]
+            }, {
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer 49ec11e0964e02f86d0b25615fd1f72ab63287dd"
+                }
+            }).then(() => {
                 console.log('GOTIFY SYSTEM is running.');
             }).catch((error) => {
                 console.log(error.message);
@@ -91,12 +107,28 @@ function App() {
 
         if (lowPriceData.length) {
             lowPriceData.forEach(i => {
-                var postdata = new URLSearchParams({
-                    'ApiKey': 'KA4MMBRZMEOWSOVC3NKEISONA',
-                    'PushTitle': '[LOW]',
-                    'PushText': i.symbol + ': ' + i.value1 + ' | ' + i.value2,
-                });
-                axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
+                // var postdata = new URLSearchParams({
+                //     'ApiKey': 'KA4MMBRZMEOWSOVC3NKEISONA',
+                //     'PushTitle': '[LOW]',
+                //     'PushText': i.symbol + ': ' + i.value1 + ' | ' + i.value2,
+                // });
+                // axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
+                //     console.log(i.symbol + ': ' + i.value1 + ' | ' + i.value2);
+                // }).catch((error) => {
+                //     console.log(error.message);
+                // })
+
+                axios.post('https://api.catapush.com/1/messages', {
+                    mobileAppId: 318,
+                    text: "[LOW]\n" + i.symbol + ': ' + i.value1 + ' | ' + i.value2,
+                    recipients: [{identifier: '84822363863'}]
+                }, {
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer 49ec11e0964e02f86d0b25615fd1f72ab63287dd"
+                    }
+                }).then(() => {
                     console.log(i.symbol + ': ' + i.value1 + ' | ' + i.value2);
                 }).catch((error) => {
                     console.log(error.message);
@@ -106,12 +138,28 @@ function App() {
 
         if (normalPriceData.length) {
             normalPriceData.forEach(i => {
-                var postdata = new URLSearchParams({
-                    'ApiKey': 'KA4MMBRZMEOWSOVC3NKEISONA',
-                    'PushTitle': '[NORMAL]',
-                    'PushText': i.symbol + ': ' + i.value1 + ' | ' + i.value2,
-                });
-                axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
+                // var postdata = new URLSearchParams({
+                //     'ApiKey': 'KA4MMBRZMEOWSOVC3NKEISONA',
+                //     'PushTitle': '[NORMAL]',
+                //     'PushText': i.symbol + ': ' + i.value1 + ' | ' + i.value2,
+                // });
+                // axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
+                //     console.log(i.symbol + ': ' + i.value1 + ' | ' + i.value2);
+                // }).catch((error) => {
+                //     console.log(error.message);
+                // })
+
+                axios.post('https://api.catapush.com/1/messages', {
+                    mobileAppId: 318,
+                    text: "[NORMAL]\n" + i.symbol + ': ' + i.value1 + ' | ' + i.value2,
+                    recipients: [{identifier: '84822363863'}]
+                }, {
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer 49ec11e0964e02f86d0b25615fd1f72ab63287dd"
+                    }
+                }).then(() => {
                     console.log(i.symbol + ': ' + i.value1 + ' | ' + i.value2);
                 }).catch((error) => {
                     console.log(error.message);
@@ -121,12 +169,28 @@ function App() {
 
         if (highPriceData.length) {
             highPriceData.forEach(i => {
-                var postdata = new URLSearchParams({
-                    'ApiKey': 'KA4MMBRZMEOWSOVC3NKEISONA',
-                    'PushTitle': '[HIGH]',
-                    'PushText': i.symbol + ': ' + i.value1 + ' | ' + i.value2,
-                });
-                axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
+                // var postdata = new URLSearchParams({
+                //     'ApiKey': 'KA4MMBRZMEOWSOVC3NKEISONA',
+                //     'PushTitle': '[HIGH]',
+                //     'PushText': i.symbol + ': ' + i.value1 + ' | ' + i.value2,
+                // });
+                // axios.post('https://www.notifymydevice.com/push', postdata).then(() => {
+                //     console.log(i.symbol + ': ' + i.value1 + ' | ' + i.value2);
+                // }).catch((error) => {
+                //     console.log(error.message);
+                // })
+
+                axios.post('https://api.catapush.com/1/messages', {
+                    mobileAppId: 318,
+                    text: "[HIGH]\n" + i.symbol + ': ' + i.value1 + ' | ' + i.value2,
+                    recipients: [{identifier: '84822363863'}]
+                }, {
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer 49ec11e0964e02f86d0b25615fd1f72ab63287dd"
+                    }
+                }).then(() => {
                     console.log(i.symbol + ': ' + i.value1 + ' | ' + i.value2);
                 }).catch((error) => {
                     console.log(error.message);
